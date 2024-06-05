@@ -14,6 +14,7 @@ Form::Form(std::string name, int gradeToSign, int gradeToExecute) : name(name), 
 
 Form::Form(const Form& copy) : name(copy.name), isSigned(copy.isSigned), gradeToSign(copy.gradeToSign), gradeToExecute(copy.gradeToExecute)
 {
+    *this = copy;
 }
 
 Form::~Form()
@@ -22,7 +23,7 @@ Form::~Form()
 
 Form& Form::operator=(const Form& src)
 {
-    (void)src;
+    isSigned = src.getIsSigned();
     return (*this);
 }
 

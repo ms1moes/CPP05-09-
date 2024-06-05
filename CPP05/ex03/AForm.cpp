@@ -14,6 +14,7 @@ AForm::AForm(std::string name, int gradeToSign, int gradeToExecute) : name(name)
 
 AForm::AForm(const AForm& copy) : name(copy.name), isSigned(copy.isSigned), gradeToSign(copy.gradeToSign), gradeToExecute(copy.gradeToExecute)
 {
+    *this = copy;
 }
 
 AForm::~AForm()
@@ -22,7 +23,7 @@ AForm::~AForm()
 
 AForm& AForm::operator=(const AForm& src)
 {
-    (void)src;
+    isSigned = src.getIsSigned();
     return (*this);
 }
 
