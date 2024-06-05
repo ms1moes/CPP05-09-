@@ -56,7 +56,7 @@ int main()
         }
         catch(const std::exception& e)
         {
-            std::cout << e.what() << '\n';
+            std::cout << e.what() << std::endl;
             std::cout << "not able to increment grade" << std::endl;
         }
     }
