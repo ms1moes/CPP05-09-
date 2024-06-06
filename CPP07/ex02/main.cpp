@@ -5,65 +5,78 @@
 int main()
 {
 
-    std::cout << "Empty array______________________________________" << std::endl;
-    Array<int> obj;
+    std::cout << "empty" << std::endl;
+    std::cout << "-----------------------------------------------" << std::endl;
+    Array<int> empty;
     try
     {
-       obj[0] = 1;
+       empty[0] = 42;
     }
     catch(const std::exception& e)
     {
-        std::cerr << e.what() << '\n';
+        std::cerr << e.what() << std::endl;
     }
     
+    std::cout << std::endl;
 
+    std::cout << "with integers" << std::endl;
+    std::cout << "-----------------------------------------------" << std::endl;
+    Array<int> arr_int(4);
+    int i = -1;
+    while(++i < 4)
+    {
+        arr_int[i] = i;
+        std::cout << arr_int[i] << std::endl;
+    }
 
-    std::cout << "int object array_________________________________" << std::endl;
-    Array<int> int_obj(4);
+    std::cout << std::endl;
 
-    for (int i = 0; i < 4 ; i++)
-        int_obj[i] = i;
-    for (int i = 0; i < 4 ; i++)
-        std::cout << int_obj[i] << std::endl;
+    std::cout << "with strings" << std::endl;
+    std::cout << "-----------------------------------------------" << std::endl;
+    Array<std::string> arr_str(4);
+    arr_str[0] = "AAAA";
+    arr_str[1] = "BBBB";
+    arr_str[2] = "CCCC";
+    arr_str[3] = "DDDD";
+    i = -1;
+    while(++i < 4)
+        std::cout << arr_str[i] << std::endl;
 
+    std::cout << std::endl;
 
+    std::cout << "copy constructor" << std::endl;
+    std::cout << "-----------------------------------------------" << std::endl;
+    Array<std::string> test1(arr_str);
+    i = -1;
+    while(++i < 4)
+        std::cout << test1[i] << std::endl;
 
-    std::cout << "string object array_________________________________" << std::endl;
-    Array<std::string> str_obj(4);
-    str_obj[0] = "str 0";
-    str_obj[1] = "str 1";
-    str_obj[2] = "str 2";
-    str_obj[3] = "str 3";
+    std::cout << std::endl;
+    
+    std::cout << "assignment operator" << std::endl;
+    std::cout << "-----------------------------------------------" << std::endl;
+    Array<std::string> test2(4);
+    i = -1;
+    while(++i < 4)
+        test2[i] = "string";
+    test1 = test2;
+    i = -1;
+    while(++i < 4)
+        std::cout << test1[i] << std::endl;
 
-    for (int i = 0; i < 4 ; i++)
-        std::cout << str_obj[i] << std::endl;
+    std::cout << std::endl;
 
-
-
-    std::cout << "copy const and assig_________________________________" << std::endl;
-    Array<std::string> dale(str_obj); //copy from str obj
-    for (int i = 0; i < 4 ; i++)
-        std::cout << dale[i] << std::endl;
-
-    Array<std::string> dale2(4);
-    for (int i = 0 ; i < 4 ; i++)
-        dale2[i] = "dale";
-
-    std::cout << "updated value" << std::endl;
-    dale = dale2; //changing 
-    for (int i = 0 ; i < 4 ; i++)
-        std::cout << dale[i] << std::endl;
-
-    std::cout << "invalid index_________________________________" << std::endl;
+    std::cout << "index out of bounds" << std::endl;
+    std::cout << "-----------------------------------------------" << std::endl;
     try
     {
-        std::cout << dale[3] << std::endl; //should print
-        std::cout << dale[5] << std::endl;
+        std::cout << test1[1] << std::endl;
+        std::cout << test1[4] << std::endl;
     }
     catch(const std::exception& e)
     {
-        std::cerr << "BOOM " << e.what() << '\n';
+        std::cerr << e.what() << std::endl;
     }
-    
 
+    return 0;   
 }

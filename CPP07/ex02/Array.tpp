@@ -34,6 +34,8 @@ Array<T>::~Array()
 template<class T>
 Array<T> &Array<T>::operator=(const Array &src)
 {
+	if (this == &src)
+		return *this;
 	if (this->array)
 		delete[] array;
 	array = new T[src.length];
