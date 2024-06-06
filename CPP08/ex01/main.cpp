@@ -74,21 +74,20 @@ int main()
     std::cout << "-----------------------------------------------" << std::endl;
 
     srand(time(NULL));
-    Span sp(10000);
+    std::vector<int> numbers(10000);
     for (int i = 0; i < 10000; ++i)
-    {
-        int num = rand();
-        sp.addNumber(num);
-    }
+        numbers[i] = rand();
+    Span sp2(10000);
     try
     {
-        std::cout << "Shortest span: " << sp.shortestSpan() << std::endl;
-        std::cout << "Longest span: " << sp.longestSpan() << std::endl;
+        sp2.improvedAddNumber(numbers.begin(), numbers.end());
+        std::cout << "Shortest span: " << sp2.shortestSpan() << std::endl;
+        std::cout << "Longest span: " << sp2.longestSpan() << std::endl;
     }
     catch (const std::out_of_range &e)
     {
         std::cerr << e.what() << std::endl;
-    }
+    }   
 }
-
+    return 0;
 }
