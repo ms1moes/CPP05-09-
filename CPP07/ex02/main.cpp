@@ -4,7 +4,6 @@
 
 int main()
 {
-
     std::cout << "empty" << std::endl;
     std::cout << "-----------------------------------------------" << std::endl;
     Array<int> empty;
@@ -41,6 +40,19 @@ int main()
     i = -1;
     while(++i < 4)
         std::cout << arr_str[i] << std::endl;
+
+    std::cout << std::endl;
+
+    std::cout << "with a complex type" << std::endl;
+    std::cout << "-----------------------------------------------" << std::endl;
+    Array< std::pair<int, std::string> > arr_pair(4);
+    arr_pair[0] = std::make_pair(1, "one");
+    arr_pair[1] = std::make_pair(2, "two");
+    arr_pair[2] = std::make_pair(3, "three");
+    arr_pair[3] = std::make_pair(42, "fourty two");
+    i = -1;
+    while(++i < 4)
+        std::cout << arr_pair[i].first << ", " << arr_pair[i].second << std::endl;
 
     std::cout << std::endl;
 
