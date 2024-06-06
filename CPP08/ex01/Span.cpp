@@ -60,9 +60,3 @@ void Span::improvedAddNumber(std::vector<int>::iterator start, std::vector<int>:
         throw std::out_of_range("too much numbers");
     vect.insert(vect.end(), start, end);
 }
-
-void Span::printNums()
-{
-    for (unsigned int i = 0; i < vect.size(); i++)
-        std::cout << vect[i] << std::endl;
-}

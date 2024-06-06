@@ -23,7 +23,6 @@ class Span
         int longestSpan();
 
         void improvedAddNumber(std::vector<int>::iterator start, std::vector<int>::iterator end);
-        void printNums();
 };
 
 #endif
