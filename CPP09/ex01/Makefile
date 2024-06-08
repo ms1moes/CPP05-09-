@@ -1,6 +1,6 @@
-NAME = PmergeMe
+NAME = RPN
 
-SRC = PmergeMe.cpp \
+SRC = RPN.cpp \
 	main.cpp 
 	  
 OBJ = $(SRC:.cpp=.o)
