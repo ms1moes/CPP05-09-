@@ -153,9 +153,9 @@ void mergeSortDeque(std::deque<int> &arr)
             int left_end = std::min(left_start + split_size - 1, arr_size - 1);
             int right_end = std::min(left_start + 2 * split_size - 1, arr_size - 1);
             if (right_end - left_start <= INSERTION_THRESHOLD)
-                insertionSortVector(arr, left_start, right_end);
+                insertionSortDeque(arr, left_start, right_end);
             else
-                mergeVector(arr, left_start, left_end, right_end);
+                mergeDeque(arr, left_start, left_end, right_end);
         }
 }
 
@@ -193,5 +193,5 @@ void ft_sort(char **av)
     showVector(arr_vector);
     //showDeque(arr_deque);
 	std::cout << "Time to process a range of " << arr_vector.size() << " elements with std::vector : " << vector_time << " ms" << std::endl;
-	std::cout << "Time to process a range of " << arr_vector.size() << " elements with std::list : " << deque_time << " ms" << std::endl;
+	std::cout << "Time to process a range of " << arr_vector.size() << " elements with std::deque : " << deque_time << " ms" << std::endl;
 }
