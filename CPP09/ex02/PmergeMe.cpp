@@ -49,72 +49,113 @@ void parser(char **av)
     }
 }
 
-void mergeVector(std::vector<int> &arr, int left, int mid, int right)
+void insertionSortVector(std::vector<int> &arr, int left, int right)
+{
+    for (int i = left + 1; i <= right; ++i)
+    {
+        int key = arr[i];
+        int j = i - 1;
+        while (j >= left && arr[j] > key)
+        {
+            arr[j + 1] = arr[j];
+            --j;
+        }
+        arr[j + 1] = key;
+    }
+}
+
+
+void mergeVector(std::vector<int> &arr, int left_start, int left_end, int right_end)
 {    
     std::vector<int> tmp;
 
-    int i = left;
-    int j = mid + 1;
+    int i = left_start;
+    int j = left_end + 1;
 
-    while (i <= mid && j <= right)
+    while (i <= left_end && j <= right_end)
     {
         if (arr[i] <= arr[j])
             tmp.push_back(arr[i++]);
         else
             tmp.push_back(arr[j++]);
     }
-    while (i <= mid)
+    while (i <= left_end)
         tmp.push_back(arr[i++]);
-    while (j <= right)
+    while (j <= right_end)
         tmp.push_back(arr[j++]);
-     for (int p = left; p <= right; p++)
-        arr[p] = tmp[p - left];
+     for (int p = left_start; p <= right_end; p++)
+        arr[p] = tmp[p - left_start];
 }
 
 void mergeSortVector(std::vector<int> &arr)
 {
+    const int INSERTION_THRESHOLD = 10; 
+
     int arr_size = arr.size();
     for (int split_size = 1; split_size < arr_size; split_size *= 2)
         for (int left_start = 0; left_start < arr_size - 1; left_start += 2 * split_size)
         {
-            int mid = std::min(left_start + split_size - 1, arr_size - 1);
+            int left_end = std::min(left_start + split_size - 1, arr_size - 1);
             int right_end = std::min(left_start + 2 * split_size - 1, arr_size - 1);
-            mergeVector(arr, left_start, mid, right_end);
+            if (right_end - left_start <= INSERTION_THRESHOLD)
+                insertionSortVector(arr, left_start, right_end);
+            else
+                mergeVector(arr, left_start, left_end, right_end);
         }
 }
 
-void mergeDeque(std::deque<int> &arr, int left, int mid, int right)
+void insertionSortDeque(std::deque<int> &arr, int left, int right)
+{
+    for (int i = left + 1; i <= right; ++i)
+    {
+        int key = arr[i];
+        int j = i - 1;
+        while (j >= left && arr[j] > key)
+        {
+            arr[j + 1] = arr[j];
+            --j;
+        }
+        arr[j + 1] = key;
+    }
+}
+
+void mergeDeque(std::deque<int> &arr, int left, int left_end, int right_end)
 {    
     std::deque<int> tmp;
 
     int i = left;
-    int j = mid + 1;
+    int j = left_end + 1;
 
-    while (i <= mid && j <= right)
+    while (i <= left_end && j <= right_end)
     {
         if (arr[i] <= arr[j])
             tmp.push_back(arr[i++]);
         else
             tmp.push_back(arr[j++]);
     }
-    while (i <= mid)
+    while (i <= left_end)
         tmp.push_back(arr[i++]);
-    while (j <= right)
+    while (j <= right_end)
         tmp.push_back(arr[j++]);
-    for (int p = left; p <= right; p++)
+    for (int p = left; p <= right_end; p++)
         arr[p] = tmp[p - left];
 
 }
 
 void mergeSortDeque(std::deque<int> &arr)
 {
+    const int INSERTION_THRESHOLD = 10;
+
     int arr_size = arr.size();
     for (int split_size = 1; split_size < arr_size; split_size *= 2)
         for (int left_start = 0; left_start < arr_size - 1; left_start += 2 * split_size)
         {
-            int mid = std::min(left_start + split_size - 1, arr_size - 1);
+            int left_end = std::min(left_start + split_size - 1, arr_size - 1);
             int right_end = std::min(left_start + 2 * split_size - 1, arr_size - 1);
-            mergeDeque(arr, left_start, mid, right_end);
+            if (right_end - left_start <= INSERTION_THRESHOLD)
+                insertionSortVector(arr, left_start, right_end);
+            else
+                mergeVector(arr, left_start, left_end, right_end);
         }
 }
 

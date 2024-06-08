@@ -18,6 +18,9 @@ void ft_sort(char **av);
 void mergeVector(std::vector<int> &arr, int left, int mid, int right);
 void mergeDeque(std::deque<int> &arr, int left, int mid, int right);
 
+void insertionSortVector(std::vector<int> &arr, int left, int right);
+void insertionSortDeque(std::deque<int> &arr, int left, int right);
+
 void mergeSortVector(std::vector<int> &arr);
 void mergeSortDeque(std::deque<int> &arr);
 
