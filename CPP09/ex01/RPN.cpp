@@ -29,13 +29,13 @@ void RPN::validate(const std::string str )
         if (str[i] != ' ' && str[i] != '+' && str[i] != '-' && str[i] != '/' && str[i] != '*' && !isdigit(str[i]))
         {
             std::cout << "invalid character" << std::endl;
-            return ;
+            exit(1) ;
         }
         if (isdigit(str[i]) || isOperator(str[i]))
             if (str[i + 1] && str[i + 1] != ' ')
             {
                 std::cout << "invalid format (no space)" << std::endl;
-                return ;
+                exit(1) ;
             }
     }
 }
@@ -66,7 +66,7 @@ int RPN::calculate(int n1, int n2, char op)
 
 void RPN::handleNotation(const std::string str)
 {
-    std::stack<int> stack;
+    std::stack<int, std::list<int> > stack;
     std::string tmp;
     int n1;
     int n2;

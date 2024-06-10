@@ -88,11 +88,37 @@ bool BitcoinExchange::dateCheck(std::string line)
 
 bool BitcoinExchange::valueCheck(std::string line)
 {
+    unsigned int i = 13;
+    int dot_count = 0;
+
     if (line[11] != '|' || line[12] != ' ' || !isdigit(line[13]))
     {
         std::cout << "ERROR: Invalid value format detected => ";
         return true;
     }
+    
+    while (isdigit(line[i]) || line[i] == '.')
+    {
+        if (line[i] == '.')
+            dot_count++;
+        if (dot_count > 1)
+        {
+            std::cout << "ERROR: Multiple dots on value => ";
+            return true;
+        }
+        i++;
+    }
+
+    while (i < line.length())
+    {
+        if (line[i] != ' ' && line[i] != '\t')
+        {
+            std::cout << "ERROR: Invalid characters after numeric value => ";
+            return true;
+        }
+        i++;
+    }
+
     double n = std::atof(line.substr(line.find("|") + 1).c_str());
     if (n > 1000 || n < 0)
     {
